@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.pro.sho"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "my_pro",
+    "packageName": "com.pro.sho",
+    "packageFolder": "com/pro/sho",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGI2MWEyNjc0YWI4YjUyNjExZjRkYWExNWIwMDg0YzM3YTk0YjFiYTk1OWU2OGI3Y2MxYmVkNWUyOGE1MGY2NTk1MTIxYzhiZDEyNDdlMTQ3ZTU4MTE5NzY3NmYwODgxMzA0N2Y0NjM3Mzg0MjdmNWJjZTUyZDA4NjU2ODM1NDY=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
