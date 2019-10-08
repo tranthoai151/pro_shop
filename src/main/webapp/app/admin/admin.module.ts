@@ -17,6 +17,7 @@ import {
   JhiConfigurationComponent,
   JhiDocsComponent
 } from './';
+import { CategoryManagementComponent } from 'app/admin/categories/category-management.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import {
     JhiHealthCheckComponent,
     JhiHealthModalComponent,
     JhiDocsComponent,
-    JhiMetricsMonitoringComponent
+    JhiMetricsMonitoringComponent,
+    CategoryManagementComponent
   ],
   entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
