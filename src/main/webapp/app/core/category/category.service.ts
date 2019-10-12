@@ -8,12 +8,16 @@ import { IUser } from 'app/core';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  public resourceUrl = SERVER_API_URL + 'api/users';
+  public resourceUrl = SERVER_API_URL + 'api/categories';
 
   constructor(private http: HttpClient) {}
 
   searchCategories(req?: any): Observable<HttpResponse<ICategory[]>> {
     const options = createRequestOption(req);
     return this.http.get<ICategory[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
+
+  find(categoryId: number): Observable<HttpResponse<ICategory>> {
+    return this.http.get<ICategory>(`${this.resourceUrl}/${categoryId}`, { observe: 'response' });
   }
 }
