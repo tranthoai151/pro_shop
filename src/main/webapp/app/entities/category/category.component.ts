@@ -1,18 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Category } from 'app/core/category/category.model';
+import { Category, ICategory } from 'app/entities/category/category.model';
 import { AccountService, User, UserService } from 'app/core';
 import { JhiAlertService, JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ITEMS_PER_PAGE } from 'app/shared';
-import { CategoryService } from 'app/core/category/category.service';
-import { HttpResponse } from '@angular/common/http';
+import { CategoryService } from 'app/entities/category/category.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'category-mgmt',
-  templateUrl: './category-management.component.html'
+  templateUrl: './category.component.html'
 })
-export class CategoryManagementComponent implements OnInit, OnDestroy {
+export class CategoryComponent implements OnInit, OnDestroy {
   categories: Category[];
   error: any;
   success: any;
@@ -24,6 +24,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
   predicate: any;
   previousPage: any;
   reverse: any;
+  currentAccount: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -47,6 +48,9 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadAll();
+    this.accountService.identity().then(account => {
+      this.currentAccount = account;
+    });
   }
 
   loadAll() {
@@ -57,8 +61,8 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
         sort: this.sort()
       })
       .subscribe(
-        (res: HttpResponse<Category[]>) => this.onSuccess(res.body, res.headers),
-        (res: HttpResponse<any>) => this.onError(res.body)
+        (res: HttpResponse<ICategory[]>) => this.onSuccess(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
 

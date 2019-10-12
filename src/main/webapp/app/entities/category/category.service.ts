@@ -2,7 +2,7 @@ import { SERVER_API_URL } from 'app/app.constants';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ICategory } from 'app/core/category/category.model';
+import { ICategory } from 'app/entities/category/category.model';
 import { createRequestOption } from 'app/shared';
 import { IUser } from 'app/core';
 
@@ -14,7 +14,7 @@ export class CategoryService {
 
   searchCategories(req?: any): Observable<HttpResponse<ICategory[]>> {
     const options = createRequestOption(req);
-    return this.http.get<ICategory[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http.get<ICategory[]>(this.resourceUrl + '/name', { params: options, observe: 'response' });
   }
 
   find(categoryId: number): Observable<HttpResponse<ICategory>> {

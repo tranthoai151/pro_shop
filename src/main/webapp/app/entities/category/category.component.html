@@ -1,0 +1,34 @@
+<div>
+    <h2 id="page-heading">
+        <span>Categories</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-category" [routerLink]="['/category/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Category
+            </span>
+        </button>
+    </h2>
+    <br/>
+    <div class="alert alert-warning" *ngIf="categories?.length === 0">
+        <span>No customers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="categories?.length > 0">
+        <table class="table table-striped">
+            <thead>
+                <th><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span>Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories">
+                    <td>{{category.categoryId}}</td>
+                    <td>{{category.name}}</td>
+                    <td>{{category.description}}</td>
+                    <td>{{category.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

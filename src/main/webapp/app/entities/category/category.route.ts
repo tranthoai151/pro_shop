@@ -1,12 +1,13 @@
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
-import { CategoryService } from 'app/core/category/category.service';
-import { Category } from 'app/core/category/category.model';
+import { CategoryService } from 'app/entities/category/category.service';
+import { Category } from 'app/entities/category/category.model';
 import { JhiResolvePagingParams } from 'ng-jhipster';
-import { CategoryManagementComponent } from 'app/admin/categories/category-management.component';
+import { CategoryComponent } from 'app/entities/category/category.component';
 import { Injectable } from '@angular/core';
+import { UserRouteAccessService } from 'app/core';
 
 @Injectable({ providedIn: 'root' })
-export class CategoryMgmt implements Resolve<any> {
+export class CategoryResolve implements Resolve<any> {
   constructor(private service: CategoryService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -18,16 +19,18 @@ export class CategoryMgmt implements Resolve<any> {
   }
 }
 
-export const categoryMgmRoute: Routes = [
+export const categoryRoute: Routes = [
   {
-    path: 'catergory-management',
-    component: CategoryManagementComponent,
+    path: '',
+    component: CategoryComponent,
     resolve: {
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      pageTitle: 'Categories',
-      defaultSort: 'id,asc'
-    }
+      authorities: ['ROLE_USER'],
+      defaultSort: 'id,asc',
+      pageTitle: 'Categories'
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
