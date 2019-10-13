@@ -66,6 +66,23 @@ export class CategoryComponent implements OnInit, OnDestroy {
       );
   }
 
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.transition();
+    }
+  }
+  transition() {
+    this.router.navigate(['/category'], {
+      queryParams: {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    });
+    this.loadAll();
+  }
+
   sort() {
     const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {

@@ -16,7 +16,7 @@ public class CategoryMapperImpl implements CategoryMapper {
             return null;
         }
         CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setCategoryId( category.getCategoryId() );
+        categoryDTO.setId( category.getId() );
         categoryDTO.setName(category.getName());
         categoryDTO.setDescription(category.getDescription());
         categoryDTO.setStatus(category.getStatus());
@@ -57,7 +57,7 @@ public class CategoryMapperImpl implements CategoryMapper {
             return null;
         }
         Category category = new Category();
-        category.setCategoryId(categoryDTO.getCategoryId() );
+        category.setId(categoryDTO.getId() );
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
         category.setStatus(categoryDTO.getStatus());
