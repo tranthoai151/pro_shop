@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/p")
 public class ProductController {
     private final Logger log = LoggerFactory.getLogger(CategoryController.class);
 
@@ -38,7 +38,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(value = "name", required = false) String name, Pageable pageable){
         log.debug("REST request to get a page of Products");
         final Page<Product> page = productService.searchProductByName(name, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/products");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p/products");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
@@ -49,5 +49,6 @@ public class ProductController {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ProductDto productDto =  mapper.readValue(jsonProduct.toString(), ProductDto.class);
         ProductDto result = productService.save(productDto, imgProduct);
-        return ResponseEntity.ok().body(result);    }
+        return ResponseEntity.ok().body(result);
+    }
 }
