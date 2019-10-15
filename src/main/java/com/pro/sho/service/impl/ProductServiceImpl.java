@@ -31,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> searchProductByName(String name, Pageable pageable) {
         log.debug("Request to search Products : {}", name);
+        name = (name == null) ? "" : name;
         return productRepository.searchProductByName(name, pageable);
     }
 

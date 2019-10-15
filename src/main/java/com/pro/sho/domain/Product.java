@@ -26,6 +26,9 @@ public class Product implements Serializable {
     @Column(name = "img")
     private String img;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne
     @JoinColumn(unique = true)
     private Category category;
@@ -73,5 +76,13 @@ public class Product implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
