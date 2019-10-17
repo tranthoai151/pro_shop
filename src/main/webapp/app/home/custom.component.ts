@@ -10,7 +10,8 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-custom',
-  templateUrl: './custom.component.html'
+  templateUrl: './custom.component.html',
+  styleUrls: ['custom.scss']
 })
 export class CustomComponent implements OnInit, OnDestroy {
   products: Product[];

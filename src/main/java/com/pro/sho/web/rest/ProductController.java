@@ -35,9 +35,9 @@ public class ProductController {
     public ProductController(){}
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(value = "name", required = false) String name, Pageable pageable){
+    public ResponseEntity<List<ProductDto>> getAllProducts(@RequestParam(value = "name", required = false) String name, Pageable pageable) throws IOException {
         log.debug("REST request to get a page of Products");
-        final Page<Product> page = productService.searchProductByName(name, pageable);
+        final Page<ProductDto> page = productService.searchProductByName(name, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p/products");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
