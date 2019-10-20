@@ -75,6 +75,8 @@ export class CustomComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = headers.get('X-Total-Count');
     this.products = data;
+    this.hardCodeImg(this.products);
+    console.log(this.products);
   }
   private onError(error) {
     this.alertService.error(error.error, error.message, null);
@@ -95,5 +97,32 @@ export class CustomComponent implements OnInit, OnDestroy {
       }
     });
     this.loadAll();
+  }
+
+  hardCodeImg(products: Product[]) {
+    products.forEach(p => {
+      switch (p.id) {
+        case 1: {
+          p.img = '../../content/images/products/chaca.jpg';
+          break;
+        }
+        case 3: {
+          p.img = '../../content/images/products/canuc.jpg';
+          break;
+        }
+        case 4: {
+          p.img = '../../content/images/products/nuocmamnguyenchat.jpg';
+          break;
+        }
+        case 5: {
+          p.img = '../../content/images/products/mamcacom.jpg';
+          break;
+        }
+        default: {
+          p.img = 'http://placehold.it/700x400';
+          break;
+        }
+      }
+    });
   }
 }
