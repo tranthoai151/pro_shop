@@ -8,6 +8,6 @@ import java.io.IOException;
 
 @Mapper(componentModel = "spring", uses = {})
 public interface ProductMapper extends EntityMapper<ProductDto, Product> {
-    ProductDto toDto(Product product) throws IOException;
+    ProductDto toDto(Product product);
     Product toEntity(ProductDto productDto);
 }
