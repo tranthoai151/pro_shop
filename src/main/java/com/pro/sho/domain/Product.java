@@ -29,6 +29,12 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "status")
+    private Integer status;
+
+    @Column(name = "unit")
+    private String unit;
+
     @ManyToOne
     @JoinColumn(unique = true)
     private Category category;
@@ -84,5 +90,21 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

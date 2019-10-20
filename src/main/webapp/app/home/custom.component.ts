@@ -118,6 +118,10 @@ export class CustomComponent implements OnInit, OnDestroy {
           p.img = '../../content/images/products/mamcacom.jpg';
           break;
         }
+        case 7: {
+          p.img = '../../content/images/products/cacomphoikho.jpg';
+          break;
+        }
         default: {
           p.img = 'http://placehold.it/700x400';
           break;

@@ -15,6 +15,10 @@ public class ProductDto implements Serializable {
 
     private Category category;
 
+    private Integer Status;
+
+    private String unit;
+
 
     public Long getId() {
         return id;
@@ -54,5 +58,21 @@ public class ProductDto implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Integer getStatus() {
+        return Status;
+    }
+
+    public void setStatus(Integer status) {
+        Status = status;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

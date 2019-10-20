@@ -7,6 +7,8 @@ export interface IProduct {
   price?: string;
   img?: string;
   description?: string;
+  status?: number;
+  unitproduct?: string;
 }
 
 export class Product implements IProduct {
@@ -16,6 +18,8 @@ export class Product implements IProduct {
     public category?: ICategory,
     public price?: string,
     public img?: string,
-    public description?: string
+    public description?: string,
+    public status?: number,
+    public unitproduct?: string
   ) {}
 }

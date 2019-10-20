@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query(value = "SELECT p FROM Product p WHERE p.name LIKE CONCAT('%',:productName,'%')")
+    @Query(value = "SELECT p FROM Product p WHERE p.name LIKE CONCAT('%',:productName,'%') AND status = 1")
     Page<Product> searchProductByName(@Param("productName") String productName, Pageable pageable);
 }

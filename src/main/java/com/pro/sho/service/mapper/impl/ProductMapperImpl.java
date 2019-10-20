@@ -33,6 +33,8 @@ public class ProductMapperImpl implements ProductMapper {
         productDto.setId(product.getId());
         productDto.setName(product.getName());
         productDto.setPrice(product.getPrice());
+        productDto.setStatus(product.getStatus());
+        productDto.setUnit(product.getUnit());
         try {
             productDto.setImg(getFile(product.getImg()));
         } catch (IOException e) {
@@ -70,6 +72,8 @@ public class ProductMapperImpl implements ProductMapper {
         p.setName(productDto.getName());
         p.setPrice(productDto.getPrice());
         p.setImg(productDto.getImg());
+        p.setStatus(productDto.getStatus());
+        p.setUnit(productDto.getUnit());
 
         return p;
     }
