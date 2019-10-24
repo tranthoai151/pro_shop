@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -46,9 +47,23 @@ public class ProductController {
     public ResponseEntity<ProductDto> createProduct(@RequestParam String jsonProduct ,@RequestParam(required = false) MultipartFile imgProduct) throws IOException {
         log.debug("REST request to create Signature Request");
         ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File(this.getFolderUpload(), imgProduct.getOriginalFilename());
+        file.createNewFile();
+
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ProductDto productDto =  mapper.readValue(jsonProduct.toString(), ProductDto.class);
+
         ProductDto result = productService.save(productDto, imgProduct);
         return ResponseEntity.ok().body(result);
     }
+
+    public File getFolderUpload() {
+        File folderUpload = new File(System.getProperty("user.home") + "/Uploads");
+        if (!folderUpload.exists()) {
+            folderUpload.mkdirs();
+        }
+        return folderUpload;
+    }
+
 }
