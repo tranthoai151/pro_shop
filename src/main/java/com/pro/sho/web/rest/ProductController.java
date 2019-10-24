@@ -10,17 +10,25 @@ import io.github.jhipster.web.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.Resource;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -57,6 +65,25 @@ public class ProductController {
         ProductDto result = productService.save(productDto, imgProduct);
         return ResponseEntity.ok().body(result);
     }
+
+    @GetMapping(path = "/download")
+    public ResponseEntity<Resource> download(String param) throws IOException {
+//        File file = new File(this.getFolderUpload()+"/"+param);
+//        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+        Path path = Paths.get(this.getFolderUpload()+"/"+param);
+        Resource resource = null;
+        try {
+            resource = new UrlResource(path.toUri());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok()
+            .contentType(MediaType.parseMediaType("application/octet-stream"))
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+            .body(resource);
+    }
+
+
 
     public File getFolderUpload() {
         File folderUpload = new File(System.getProperty("user.home") + "/Uploads");
