@@ -35,8 +35,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<ProductDto> searchProductByName(String name, Pageable pageable) throws IOException {
         log.debug("Request to search Products : {}", name);
-//        Resource resource = new ClassPathResource("/img/ao.png");
-//        File file = resource.getFile();
         name = (name == null) ? "" : name;
         return productRepository.searchProductByName(name, pageable).map(productMapper::toDto);
     }
